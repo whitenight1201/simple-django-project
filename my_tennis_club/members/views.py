@@ -30,3 +30,27 @@ def testing(request):
         "fruits": ["Apple", "Banana", "Cherry"],
     }
     return HttpResponse(template.render(context, request))
+
+
+def setcookie(request):
+    html = HttpResponse("<h1>Welcome to Cookie</h1>")
+    html.set_cookie("TechVidvan", "We are setting a cookie", max_age=None)
+    return html
+
+
+def showcookie(request):
+    show = request.COOKIES["TechVidvan"]
+    html = "<center> New Page <br>{0}</center>".format(show)
+    return HttpResponse(html)
+
+
+def updating_cookie(request):
+    html = HttpResponse("We are updating  the cookie which is set before")
+    html.set_cookie("TechVidvan", "Updated Successfully")
+    return html
+
+
+def deleting_cookie(request):
+    html = HttpResponse("Deleting the cookie which is set")
+    html.delete_cookie("TechVidvan", "Updated Successfully")
+    return html
